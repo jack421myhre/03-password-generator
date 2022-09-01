@@ -2,6 +2,7 @@
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
+let upperChoice, lowerChoice, numChoice, specialChoice;
 const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 const special = ["!", "@", "#", "$", "%", "^", "&", "*", "-", "_", "+", "="];
 const lower = [
@@ -62,36 +63,35 @@ const upper = [
     "Z",
 ];
 
-let pass = [];
-let passArr = [];
-
 // Generate password
 function generatePassword() {
+    let newPass = [];
+    let passArr = [];
     // prompts user for password length
     let passLength = prompt(
         "How many characters would you like in your new password?"
     );
 
-    // Checks for password limits, no lower than 8 and no higher than 128
+    // Checks for password limits, no lower than 8 and no higher than 128. Captures the new value from the user
     if (passLength < 8 || passLength > 128) {
         passLength = prompt(
             "The number must be more than 8 characters and less than 128 characters."
         );
     }
 
-    // prompts user for character choices and stores them in vars
-    let upperChoice = confirm(
+    // prompts user for character choices and stores them in variables
+    upperChoice = confirm(
         "Would you like your password to contain uppercase letters?"
     );
-    let lowerChoice = confirm(
+    lowerChoice = confirm(
         "Would you like your password to contain lowercase letters?"
     );
-    let numChoice = confirm("Would you like your password to contain numbers?");
-    let specialChoice = confirm(
+    specialChoice = confirm(
         "Would you like your password to contain special characters?"
     );
+    numChoice = confirm("Would you like your password to contain numbers?");
 
-    // logic for the characters the user chose
+    // Adds the characters based on which ones the user chose to the passArr array
     if (upperChoice) {
         passArr = passArr.concat(upper);
     }
@@ -107,6 +107,23 @@ function generatePassword() {
     if (numChoice) {
         passArr = passArr.concat(nums);
     }
+
+    // Reruns the function if no characters are selected.
+    if (!upperChoice && !lowerChoice && !specialChoice && !numChoice) {
+        alert("Please choose at least one type of character.");
+        generatePassword();
+    }
+
+    // pushes the randomly selected characters to the new password array
+    for (let i = 0; i < passLength; i++) {
+        newPass.push(passArr[Math.floor(Math.random() * passArr.length)]);
+    }
+
+    newPass = newPass.join("");
+    alert(`Here is your new secure password!: ${newPass}`);
+
+    // Returns the new password from the function
+    return newPass;
 }
 
 function writePassword() {
