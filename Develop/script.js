@@ -119,6 +119,7 @@ function generatePassword() {
         newPass.push(passArr[Math.floor(Math.random() * passArr.length)]);
     }
 
+    // Removes commas from the new password
     newPass = newPass.join("");
     alert(`Here is your new secure password!: ${newPass}`);
 
