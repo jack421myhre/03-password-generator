@@ -12,6 +12,10 @@ N/A
 
 Generate random passwords for use anywhere. Does not store passwords for you. Upon refresh, the password will be lost.
 
+## Features
+
+In the event that the user doesn't copy the password when the alert populates, it is written to the page to copy.
+
 ## Screenshots
 
 ![pg1](https://user-images.githubusercontent.com/73844213/188021289-00ccedae-43b3-47a1-b2a9-ea4dac38d664.png)
